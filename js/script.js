@@ -93,7 +93,7 @@ function letter() {
     document.getElementById("letter-btn").style.display = "none";
   }
   else{
-    txt = "looks like you entered wrong or you left the me blank, enter your name, its easy";
+    txt = "looks like you entered wrong or you left the field blank, enter your name, its easy";
     document.getElementById("demo").innerHTML = txt;
     document.getElementById("letter-btn").innerText = "retry";
   }
