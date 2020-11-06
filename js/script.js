@@ -91,6 +91,7 @@ function letter() {
 
     document.getElementById("demo").innerHTML = txt ;
     document.getElementById("letter-btn").style.display = "none";
+    document.getElementById("letter").style.display = "inherit";
   }
   else{
     txt = "looks like you entered wrong or you left the me blank, enter your name, its easy";
@@ -99,5 +100,4 @@ function letter() {
   }
   
 }
-
 
