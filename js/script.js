@@ -70,6 +70,15 @@ function light_toggle() {
 
 }
 
+function reset() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("content").innerHTML = "";
+    }
+  };
+}
+
 function letter() {
 
   // var encrypted = CryptoJS.AES.encrypt("bakait aurat", "Secret Passphrase");
