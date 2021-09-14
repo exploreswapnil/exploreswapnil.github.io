@@ -56,24 +56,11 @@
             </div>
         </div>
 
-    <!-- custom menus -->
-    <!--    
-    <ul class="nav justify-content-center" style="margin-top:0">
-            <li class="nav-item">
-              <a class="nav-link" id="home" onclick="devops()" href="#">devops</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="medium" href="https://swapnilkr.medium.com" target="_blank">medium</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="home" onclick="azure()" href="#">azure</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="home" onclick="software_testing()" href="#">software testing</a>
-            </li>
-        </ul>
-    -->
-        
+    <!-- medium-latest-posts -->
+    <div id="medium-widget"></div>
+    <script src="https://medium-widget.pixelpoint.io/widget.js"></script>
+    <script>MediumWidget.Init({renderTo: '#medium-widget', params: {"resource":"https://medium.com/@swapnilkr","postsPerLine":1,"limit":4,"picture":"small","fields":["description","claps","likes","publishAt"],"ratio":"original"}})</script>
+
     </div>
 
 <div class="container" id="content"></div>
