@@ -1,41 +1,54 @@
-*{
+* {
     padding: 5px;
     font-family: 'Syne Mono', monospace;
 }
 
-.brand-name{
-    text-align: left;   
+body {
+    color: white;
+    /* background-image: url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background: #0f0c29;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.brand-name {
+    text-align: left;
     margin-left: -8px;
 }
 
-.brand-name a{
-    color:steelblue;
+.brand-name a {
+    color: rgb(189, 203, 214);
 }
 
-.footer{
+.footer {
     text-align: left;
 }
 
-.copy-footer-hr{
+.copy-footer-hr {
     width: 20%;
     padding: 0;
     background-color: black;
 }
 
-.copy-footer-title{
+.copy-footer-title {
     text-align: center;
     font-weight: 300;
 }
 
-a:hover{
+a:hover {
     text-decoration: none;
 }
 
-.vertical-space{
-    margin-top:2%;
+.vertical-space {
+    margin-top: 2%;
 }
 
-.copy-footer-letter{
+.copy-footer-letter {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -45,6 +58,19 @@ a:hover{
     text-align: center;
 }
 
-#letter{
+#letter {
     display: none;
+}
+
+.medium-widget-article__description {
+    color: white !important;
+}
+
+.medium-widget-article__title {
+    color: white !important;
+    font-weight: 300 !important;
+}
+
+iframe {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
