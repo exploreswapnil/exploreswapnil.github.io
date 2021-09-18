@@ -17,20 +17,16 @@
     <!-- custom javascript -->
     <script src="js/script.js"></script>
     <title>swapnilkumar.in</title>
-    <style>
-        img {
-            border-radius: 15px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        }
-    </style>
 </head>
 
 <body id="body">
     <div class="container">
-        <!-- <div class="row">
-             <div class="col-md-10">
-                <h3 class="brand-name"><a href="#" id="sk" onclick="reset()">swapnilkumar</a></h3>
-            </div> -->
+        <div class="row">
+            <div class="col-md-10">
+                <h5 class="brand-name"><a href="#" id="sk">swapnilkumar.in</a></h5>
+            </div>
+        </div>
+
 
         <!-- <div class="col-md-2">
                 <button type="button" id="lightToggle" onclick="light_toggle()" value="1">lights off</button>
@@ -41,11 +37,11 @@
         <div class="row">
             <div class="col-md-6">
 
-                <div class="card text-center" style="border:none;background-color: black;color:white;">
+                <div class="card text-center" style="border:none;background: #2a0845;color:white;">
                     <div class="card-body">
                         <img src="img/emoji.png" alt="..." height="100px">
                         <br><br>
-                        <h4 class="card-title">swapnil kumar</h4>
+                        <!-- <h4 class="card-title">swapnil kumar</h4> -->
                         <p class="card-text"><a href="https://en.wikipedia.org/wiki/DevOps" target="_blank">devOps</a> engineer by profession at <a href="https://www.globant.com/" target="_blank">Globant</a> thinks CI/CD pipeline is analogous to life, for a new change every
                             day we prepare ourselves with challenges to deal with. blog writer on medium, generally related to journey and life. also write technical blogs related to <a href="https://en.wikipedia.org/wiki/DevOps" target="_blank">devOps</a>,
                             <a href="https://azure.microsoft.com/en-in/" target="_blank">microsoft azure</a>, <a href="https://en.wikipedia.org/wiki/Software_testing" target="_blank">software
@@ -63,52 +59,92 @@
             </div>
 
             <div class="col-md-6">
-                <h3><img src="./img/medium.png" height="60px" width="60px"> stories
-                </h3>
-                <!-- medium-latest-posts -->
-                <div id="medium-widget" style="color: white !important;"></div>
-                <script src="widget.js"></script>
-                <script>
-                    MediumWidget.Init({
-                        renderTo: '#medium-widget',
-                        params: {
-                            "resource": "https://medium.com/@swapnilkr",
-                            "postsPerLine": 2,
-                            "limit": 2,
-                            "picture": "big",
-                            "fields": ["description", "claps", "likes", "publishAt"],
-                            "ratio": "original"
-                        }
-                    })
-                </script>
+
+                <div class="card text-center" style="background: transparent;">
+
+
+                    <!-- medium-latest-posts -->
+                    <div id="medium-widget" style="color: white !important;margin:0 !important;"></div>
+
+                    <script src="widget.js"></script>
+                    <script>
+                        MediumWidget.Init({
+                            renderTo: '#medium-widget',
+                            params: {
+                                "resource": "https://medium.com/@swapnilkr",
+                                "postsPerLine": 2,
+                                "limit": 2,
+                                "picture": "big",
+                                "fields": ["description"],
+                                "ratio": "original"
+                            }
+                        })
+                    </script>
+
+                </div>
+                <h5 style="text-align: left;margin-top:10px;"><img src="./img/medium.png" height="50px" width="50px"> read more <a href="https://swapnilkr.medium.com">here</a></h5>
+
             </div>
+
 
 
         </div>
-        <hr style="background-color: white;padding:0">
-        <div class=" row ">
-            <div class="col-md-12 ">
-                <h3><img src="./img/soundcloud.png " height="60px " alt=" "> recordings | feel recording</h3>
-                <div class="row ">
-                    <div class="col-md-6 ">
+        <!-- <hr style="background-color: white;padding:0"> -->
+        <div class="row">
+            <div class="col-md-6 ">
 
-                        <iframe width="100% " height="166 " scrolling="no " frameborder="no " allow="autoplay " src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/990333097&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true "></iframe>
-                        <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight:
+                <div class="card text-center" style="background: transparent;">
+
+                    <div class="row ">
+                        <div class="col-md-6 ">
+
+                            <iframe width="100% " height="166 " scrolling="no " frameborder="no " allow="autoplay " src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/990333097&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true "></iframe>
+                            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight:
             100; ">
-                            <a href="https://soundcloud.com/souplazyfeelrecording " title="Feel Recording " target="_blank " style="color: #cccccc; text-decoration: none; ">Feel Recording</a> · <a href="https://soundcloud.com/souplazyfeelrecording/har-ek-pal-ashu-shukla "
-                                title="Har Ek Pal (Ashu Shukla) " target="_blank " style="color: #cccccc; text-decoration: none; ">Har Ek Pal (Ashu Shukla)</a></div>
+                                <a href="https://soundcloud.com/souplazyfeelrecording " title="Feel Recording " target="_blank " style="color: #cccccc; text-decoration: none; ">Feel Recording</a> · <a href="https://soundcloud.com/souplazyfeelrecording/har-ek-pal-ashu-shukla "
+                                    title="Har Ek Pal (Ashu Shukla) " target="_blank " style="color: #cccccc; text-decoration: none; ">Har Ek Pal (Ashu Shukla)</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <iframe width="100% " height="166 " scrolling="no " frameborder="no " allow="autoplay " src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/856217356&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true "></iframe>
+                            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight:
+            100; ">
+                                <a href="https://soundcloud.com/souplazyfeelrecording " title="Feel Recording " target="_blank " style="color: #cccccc; text-decoration: none; ">Feel Recording</a> · <a href="https://soundcloud.com/souplazyfeelrecording/kasoor-openly "
+                                    title="Kasoor (Openly) " target="_blank " style="color: #cccccc; text-decoration: none; ">Kasoor (Openly)</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6 ">
-                        <iframe width="100% " height="166 " scrolling="no " frameborder="no " allow="autoplay " src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/856217356&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true "></iframe>
-                        <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight:
-            100; ">
-                            <a href="https://soundcloud.com/souplazyfeelrecording " title="Feel Recording " target="_blank " style="color: #cccccc; text-decoration: none; ">Feel Recording</a> · <a href="https://soundcloud.com/souplazyfeelrecording/kasoor-openly "
-                                title="Kasoor (Openly) " target="_blank " style="color: #cccccc; text-decoration: none; ">Kasoor (Openly)</a></div>
+
+
+                </div>
+                <h5 style="text-align: left;margin-top:10px;"><img src="./img/soundcloud.png " height="60px" alt=" "> listen more <a href="https://soundcloud.com/souplazyfeelrecording">here</a></h5>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card" style="width: 16rem;color:black;">
+                            <a href="https://photos.app.goo.gl/k7XQHG2uAFSzF5XS6" target="_blank"><img src="https://lh3.googleusercontent.com/05fy6YFHvLLzMZeefh5jD8yAhh5Qyd0WGgN-6A-36BB4BnglRQwLWC-ppuVkTp3LWoxcvI2s6SW5N6aT96iH10-kaUWWWGMgTYMuuCZbDI-y9bT4Oz0_yCOGIC5cHuIg8OO9ikHWxDE=w1920-h1080" class="card-img-top" alt="..."></a>
+                            <div class="card-body">
+                                <p class="card-text">lansdowne, Uttarakhand</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card" style="width: 16rem;color:black;">
+                            <a href="https://photos.app.goo.gl/tWtBDhRH7DUpuJQE8" target="_blank"><img src="https://lh3.googleusercontent.com/w0AJDXVmwgSRLG0UGgYw4cNZNqccus1c_KhU8hb1zPgaeEnpd1-hHyj-ULtvb0C3TaTIOxKtZTAUOIWpOmIWjpSP0lt43XoriI5mdvnfRt2Uuzq5h778ljFuKV_IfUniSuq8lqkcK70=w1920-h1080" class="card-img-top" alt="..."></a>
+                            <div class="card-body">
+                                <p class="card-text">chopta, Uttarakhand</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-
+                <h5><img src="./img/googlephotos.png " height="60px" alt=" ">
+                    <span><caption>more on the way . . .</caption></span>
+                </h5>
             </div>
+
         </div>
 
 
