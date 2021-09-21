@@ -1,173 +1,184 @@
-<h3>can we have some azure ?</h3>
-<div class="container">
+<!doctype html>
+<html lang="en">
 
-    <ul>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <li>How to rename Azure Virtual Machine<span><a data-toggle="collapse" href="#one" role="button"
-                    aria-expanded="false" aria-controls="one">read here</a></span></li>
-        <li>Attaching SQL Agent with the Azure virtual machine<span><a data-toggle="collapse" href="#two" role="button"
-                    aria-expanded="false" aria-controls="two">read here</a></span></li>
-    </ul>
-</div>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-<div class="row" style="color:steelblue;">
-    <div class="col">
-        <div class="collapse multi-collapse" id="one">
-            <div class="card card-body">
-                Renaming a virtual machine on Azure is not straight forward as like renaming a folder or file on your
-                local PC. Also there is no manual process or rename operation that can be used on the Azure portal to
-                rename a Virtual machine as well. So do we have anything that we can do to rename our Virtual Machine or
-                not?
-                <div class="vertical-space"></div>
-                Yes we do have, we can perform the renaming of virtual machines using powershell script. You just need
-                to make sure to run the script one by one just to make sure not make any mistake as the rename operation
-                actually performs deletion and creation of the virtual machine with old configuration and a new name.
-                <div class="vertical-space"></div>
-                There are a points which needs to be kept in mind while performing this operation of renaming, those are
-                listed below:
-                <div class="vertical-space"></div>
-                Replication will then be required to be re-initiated due to name change
-                <div class="vertical-space"></div>
-                Backup also is then required to be re-initiated
-                <div class="vertical-space"></div>
-                Management configuration requires a revisit (when i tried on my virtual machine, the auto shutdown
-                property was removed)
-                <div class="vertical-space"></div>
-                Make sure to detach any data disks before performing the rename (not the OS disk)
-                <div class="vertical-space"></div>
-                If you have configured the Dashboard with that virtual machine tiles on it, due to name change the
-                dashboard will then required a revisit, since now you will see “No data available” for the old VM
-                <div class="vertical-space"></div>
-                So before proceeding lets deal with the Pre-requisites:
-                <div class="vertical-space"></div>
-                An Azure subscription.
-                <div class="vertical-space"></div>
-                Az Azure Virtual machine on which rename is to be performed
-                <div class="vertical-space"></div>
-                Windows PowerShell 5.1 or later, you can download from here
-                <div class="vertical-space"></div>
-                The Az PowerShell module.
-                <div class="vertical-space"></div>
-                A script editor of your choice. I am using Notepad++, can be downloaded from <a
-                    href="https://notepad-plus-plus.org/downloads/">here</a>, but you can use any
-                of your choice.
-                <div class="vertical-space"></div>
-                We will be actully doing three major operations, Backing up the Old VM configurations, Deleting it and
-                Finally creating the New Virtual Machine with old configuration and new name.
-                <div class="vertical-space"></div>
-                Before going with the steps below you need to connect to your Azure account and required subscription
-                <div class="vertical-space"></div>
-                Check Sign in with Azure PowerShell, when connected in the required subscription you can check your VMs
-                using the Get-AzVM command and now perform the below steps
-                <div class="vertical-space"></div>
-                1. Backing up the OLD VM
-                <div class="vertical-space"></div>
-                Using your script editor, create a powershell script and enter the below script
-                <div class="vertical-space"></div>
-                # Resource Group Name
-                $ResourceGroupName = ‘your_resource_group_name’
-                <div class="vertical-space"></div>
-                # Virtual Machine Name
-                $VirtualMachineName = ‘your_virtual_machine_name_which_needs_to_be_renamed’
-                <div class="vertical-space"></div>
+    <!-- custom css -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/style.css" type="text/css">
+    <link rel="shortcut icon" href="../../img/favicon.ico" type="image/x-icon">
+    <!-- custom javascript -->
+    <script src="../../js/script.js"></script>
+    <title>swapnilkumar.in</title>
+</head>
 
+<body id="body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <h5 class="brand-name"><a href="#" id="sk">swapnilkumar.in</a></h5>
+                <h5 class="brand-name"><a href="#" id="sk">swapnilkumar.in</a></h5>
+            </div>
+        </div>
+        <h3>can we have some azure ?</h3>
+        <div class="container">
 
+            <ul>
 
-                Then, this next command will export the Azure VM properties to an XML file. Save it somewhere on your
-                computer that you can find later on. The code below saves the VM settings to C:\Demo\Backup.xml*.
-                <div class="vertical-space"></div>
-                # Export VM properties
-                Get-AzVM -ResourceGroupName $ResourceGroupName -Name $VirtualMachineName | Export-Clixml
-                C:\Demo\VM_Backup.xml -Depth 5
-                <div class="vertical-space"></div>
-                Now you have a backup of the original VM properties that you can use as a reference when needed. Use the
-                command below to import the backup XML file into a variable named $oldVM.
-                <div class="vertical-space"></div>
-                # Import VM settings from backup XML and store it in a variable
-                $oldVM = Import-Clixml C:\Demo\VM_Backup.xml
-                <div class="vertical-space"></div>
-                2. Deleting the Virtual Machine
-                <div class="vertical-space"></div>
-                Since by now you have the Configuration backup with you, now we can delete the Virtual Machine
-                <div class="vertical-space"></div>
-                # Delete the Old VM
-                Remove-AzVM -ResourceGroupName $oldVM.ResourceGroupName -Name $oldVM.Name
-                <div class="vertical-space"></div>
-                You might be asking “what about the other resources which were connected to the virtual machine that was
-                deleted?”. No need to worry, those resources are left unchanged.
-                <div class="vertical-space"></div>
-                The previous command only deletes the virtual machine. You can confirm by looking for those connected
-                resources in the Azure portal under the resource group.
-                <div class="vertical-space"></div>
+                <li>How to rename Azure Virtual Machine<span><a data-toggle="collapse" href="#one" role="button"
+                            aria-expanded="false" aria-controls="one">read here</a></span></li>
+                <li>Attaching SQL Agent with the Azure virtual machine<span><a data-toggle="collapse" href="#two"
+                            role="button" aria-expanded="false" aria-controls="two">read here</a></span></li>
+            </ul>
+        </div>
+
+        <div class="row" style="color:steelblue;">
+            <div class="col">
+                <div class="collapse multi-collapse" id="one">
+                    <div class="card card-body">
+                        Renaming a virtual machine on Azure is not straight forward as like renaming a folder or file on your local PC. Also there is no manual process or rename operation that can be used on the Azure portal to rename a Virtual machine as well. So do we have
+                        anything that we can do to rename our Virtual Machine or not?
+                        <div class="vertical-space"></div>
+                        Yes we do have, we can perform the renaming of virtual machines using powershell script. You just need to make sure to run the script one by one just to make sure not make any mistake as the rename operation actually performs deletion and creation of
+                        the virtual machine with old configuration and a new name.
+                        <div class="vertical-space"></div>
+                        There are a points which needs to be kept in mind while performing this operation of renaming, those are listed below:
+                        <div class="vertical-space"></div>
+                        Replication will then be required to be re-initiated due to name change
+                        <div class="vertical-space"></div>
+                        Backup also is then required to be re-initiated
+                        <div class="vertical-space"></div>
+                        Management configuration requires a revisit (when i tried on my virtual machine, the auto shutdown property was removed)
+                        <div class="vertical-space"></div>
+                        Make sure to detach any data disks before performing the rename (not the OS disk)
+                        <div class="vertical-space"></div>
+                        If you have configured the Dashboard with that virtual machine tiles on it, due to name change the dashboard will then required a revisit, since now you will see “No data available” for the old VM
+                        <div class="vertical-space"></div>
+                        So before proceeding lets deal with the Pre-requisites:
+                        <div class="vertical-space"></div>
+                        An Azure subscription.
+                        <div class="vertical-space"></div>
+                        Az Azure Virtual machine on which rename is to be performed
+                        <div class="vertical-space"></div>
+                        Windows PowerShell 5.1 or later, you can download from here
+                        <div class="vertical-space"></div>
+                        The Az PowerShell module.
+                        <div class="vertical-space"></div>
+                        A script editor of your choice. I am using Notepad++, can be downloaded from <a href="https://notepad-plus-plus.org/downloads/">here</a>, but you can use any of your choice.
+                        <div class="vertical-space"></div>
+                        We will be actully doing three major operations, Backing up the Old VM configurations, Deleting it and Finally creating the New Virtual Machine with old configuration and new name.
+                        <div class="vertical-space"></div>
+                        Before going with the steps below you need to connect to your Azure account and required subscription
+                        <div class="vertical-space"></div>
+                        Check Sign in with Azure PowerShell, when connected in the required subscription you can check your VMs using the Get-AzVM command and now perform the below steps
+                        <div class="vertical-space"></div>
+                        1. Backing up the OLD VM
+                        <div class="vertical-space"></div>
+                        Using your script editor, create a powershell script and enter the below script
+                        <div class="vertical-space"></div>
+                        # Resource Group Name $ResourceGroupName = ‘your_resource_group_name’
+                        <div class="vertical-space"></div>
+                        # Virtual Machine Name $VirtualMachineName = ‘your_virtual_machine_name_which_needs_to_be_renamed’
+                        <div class="vertical-space"></div>
 
 
-                3. Creating the New Virtual Machine with new name
-                <div class="vertical-space"></div>
-                # Set the name of the new virtual machine
-                $newVMName = ‘demo-mail2’
-                <div class="vertical-space"></div>
-                # Initiate a new virtual machine configuration
-                $newVM = New-AzVMConfig -VMName $newVMName -VMSize $oldVM.HardwareProfile.VmSize -Tags $oldVM.Tags
-                <div class="vertical-space"></div>
-                Next, attach the OS Disk that was previously attached to the old virtual machine to the new one. Use the
-                code below to do that.
-                <div class="vertical-space"></div>
-                # Attach the OS Disk of the old VM to the new VM
-                Set-AzVMOSDisk -VM $newVM -CreateOption Attach -ManagedDiskId
-                $oldVM.StorageProfile.OsDisk.ManagedDisk.Id -Name $oldVM.StorageProfile.OsDisk.Name -Windows
-                <div class="vertical-space"></div>
-                Now, attach the network interface using this next line of code.
-                <div class="vertical-space"></div>
-                # Attach all NICs of the old VM to the new VM
-                $oldVM.NetworkProfile.NetworkInterfaces | % {Add-AzVMNetworkInterface -VM $newVM -Id $_.Id}
-                <div class="vertical-space"></div>
-                And finally, attach any data disks that were present in the old VM.
-                <div class="vertical-space"></div>
-                # Attach all Data Disks (if any) of the old VM to the new VM
-                $oldVM.StorageProfile.DataDisks | % {Add-AzVMDataDisk -VM $newVM -Name $_.Name -ManagedDiskId
-                $_.ManagedDisk.Id -Caching $_.Caching -Lun $_.Lun -DiskSizeInGB $_.DiskSizeGB -CreateOption Attach}
 
-                <div class="vertical-space"></div>
+                        Then, this next command will export the Azure VM properties to an XML file. Save it somewhere on your computer that you can find later on. The code below saves the VM settings to C:\Demo\Backup.xml*.
+                        <div class="vertical-space"></div>
+                        # Export VM properties Get-AzVM -ResourceGroupName $ResourceGroupName -Name $VirtualMachineName | Export-Clixml C:\Demo\VM_Backup.xml -Depth 5
+                        <div class="vertical-space"></div>
+                        Now you have a backup of the original VM properties that you can use as a reference when needed. Use the command below to import the backup XML file into a variable named $oldVM.
+                        <div class="vertical-space"></div>
+                        # Import VM settings from backup XML and store it in a variable $oldVM = Import-Clixml C:\Demo\VM_Backup.xml
+                        <div class="vertical-space"></div>
+                        2. Deleting the Virtual Machine
+                        <div class="vertical-space"></div>
+                        Since by now you have the Configuration backup with you, now we can delete the Virtual Machine
+                        <div class="vertical-space"></div>
+                        # Delete the Old VM Remove-AzVM -ResourceGroupName $oldVM.ResourceGroupName -Name $oldVM.Name
+                        <div class="vertical-space"></div>
+                        You might be asking “what about the other resources which were connected to the virtual machine that was deleted?”. No need to worry, those resources are left unchanged.
+                        <div class="vertical-space"></div>
+                        The previous command only deletes the virtual machine. You can confirm by looking for those connected resources in the Azure portal under the resource group.
+                        <div class="vertical-space"></div>
 
 
-                At this point, the new virtual machine specs are packaged in the configuration stored in the $newVM
-                variable. Using this next code snippet will trigger the creation of the new virtual machine.
-                <div class="vertical-space"></div>
-                # Create the new virtual machine
-                New-AzVM -ResourceGroupName $ResourceGroupName -Location $oldVM.Location -VM $newVM
-                <div class="vertical-space"></div>
-                The creation may take a few minutes to complete.
-                <div class="vertical-space"></div>
-                For more, you can refer to this<a
-                    href="https://www.whatsupgold.com/blog/how-to-rename-an-azure-vm-using-powershell-a-step-by-step-guide">article</a>
+                        3. Creating the New Virtual Machine with new name
+                        <div class="vertical-space"></div>
+                        # Set the name of the new virtual machine $newVMName = ‘demo-mail2’
+                        <div class="vertical-space"></div>
+                        # Initiate a new virtual machine configuration $newVM = New-AzVMConfig -VMName $newVMName -VMSize $oldVM.HardwareProfile.VmSize -Tags $oldVM.Tags
+                        <div class="vertical-space"></div>
+                        Next, attach the OS Disk that was previously attached to the old virtual machine to the new one. Use the code below to do that.
+                        <div class="vertical-space"></div>
+                        # Attach the OS Disk of the old VM to the new VM Set-AzVMOSDisk -VM $newVM -CreateOption Attach -ManagedDiskId $oldVM.StorageProfile.OsDisk.ManagedDisk.Id -Name $oldVM.StorageProfile.OsDisk.Name -Windows
+                        <div class="vertical-space"></div>
+                        Now, attach the network interface using this next line of code.
+                        <div class="vertical-space"></div>
+                        # Attach all NICs of the old VM to the new VM $oldVM.NetworkProfile.NetworkInterfaces | % {Add-AzVMNetworkInterface -VM $newVM -Id $_.Id}
+                        <div class="vertical-space"></div>
+                        And finally, attach any data disks that were present in the old VM.
+                        <div class="vertical-space"></div>
+                        # Attach all Data Disks (if any) of the old VM to the new VM $oldVM.StorageProfile.DataDisks | % {Add-AzVMDataDisk -VM $newVM -Name $_.Name -ManagedDiskId $_.ManagedDisk.Id -Caching $_.Caching -Lun $_.Lun -DiskSizeInGB $_.DiskSizeGB -CreateOption Attach}
+
+                        <div class="vertical-space"></div>
+
+
+                        At this point, the new virtual machine specs are packaged in the configuration stored in the $newVM variable. Using this next code snippet will trigger the creation of the new virtual machine.
+                        <div class="vertical-space"></div>
+                        # Create the new virtual machine New-AzVM -ResourceGroupName $ResourceGroupName -Location $oldVM.Location -VM $newVM
+                        <div class="vertical-space"></div>
+                        The creation may take a few minutes to complete.
+                        <div class="vertical-space"></div>
+                        For more, you can refer to this<a href="https://www.whatsupgold.com/blog/how-to-rename-an-azure-vm-using-powershell-a-step-by-step-guide">article</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" style="color:steelblue;">
+            <div class="col">
+                <div class="collapse multi-collapse" id="two">
+                    <div class="card card-body">
+                        To rename a Virtual machine having sql configuration (for example a azure sql machine with configuration of SQL Server 2016 with Windows server 2016 Datacenter R2)
+                        <div class="vertical-space"></div>
+                        what? you virtual machine had a sql agent attached to it before renaming? now you don’t know how do it right? No worries, you came to the right place, but before moving forward i would request you to go through the previous article of renaming an azure
+                        virtual machine because this process saves all the configuration required to be used in the following steps as well. I hope you have gone through the previous article, so now you have to perform just one more step or run a single
+                        line of script in powershell to add the sql agent to the renamed virtual machine
+
+                        <div class="vertical-space"></div>
+
+                        > New-AzSqlVM -ResourceGroupName “resource-group-nae” -Name “renamed-virtual-machine-name” -Location “location” -LicenseType PAYG
+                        <div class="vertical-space"></div>
+                        and thats it, you’re done.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <script data-name="BMC-Widget " data-cfasync="false " src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js " data-id="swapnilk " data-description="Support me on Buy me a coffee! " data-message=" " data-color="#5F7FFF " data-position="Right
+            " data-x_margin="18 " data-y_margin="18 "></script>
 
-</div>
+    <!-- Optional JavaScript; choose one of the two! -->
 
-<div class="row" style="color:steelblue;">
-    <div class="col">
-        <div class="collapse multi-collapse" id="two">
-            <div class="card card-body">
-                To rename a Virtual machine having sql configuration (for example a azure sql machine with configuration
-                of SQL Server 2016 with Windows server 2016 Datacenter R2)
-                <div class="vertical-space"></div>
-                what? you virtual machine had a sql agent attached to it before renaming? now you don’t know how do it
-                right? No worries, you came to the right place, but before moving forward i would request you to go
-                through the previous article of renaming an azure virtual machine because this process saves all the
-                configuration required to be used in the following steps as well.
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://kit.fontawesome.com/098aa582ef.js " crossorigin="anonymous "></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx " crossorigin="anonymous "></script>
 
-                I hope you have gone through the previous article, so now you have to perform just one more step or run
-                a single line of script in powershell to add the sql agent to the renamed virtual machine
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js " integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js " integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s " crossorigin="anonymous "></script>
+    -->
+</body>
 
-                <div class="vertical-space"></div>
-
-                > New-AzSqlVM -ResourceGroupName “resource-group-nae” -Name “renamed-virtual-machine-name” -Location
-                “location” -LicenseType PAYG
-                <div class="vertical-space"></div>
-                and thats it, you’re done.
-            </div>
-        </div>
-    </div>
-</div>
+</html>
