@@ -87,3 +87,8 @@ img {
 .medium-widget-article__column {
     width: 100% !important;
 }
+
+.active {
+    box-shadow: 0 2px 4px 0 white, 0 3px 10px 0 white;
+    border-radius: 15px;
+}
