@@ -88,6 +88,12 @@ img {
 /* added the active class csse */
 
 .active {
-    box-shadow: 0 2px 0 0 white, 0 3px 10px 0 white;
-    border-radius: 15px;
+    color: white;
+    border-bottom: 1px solid yellowgreen;
+    /*     border-radius: 15px; */
+}
+
+.card-text,
+.card-title {
+    color: black;
 }
